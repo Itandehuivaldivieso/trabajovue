@@ -20,7 +20,11 @@
                   :to="{ name: 'listararrendatario' }"
                   >Home</router-link >
           </li>
-        
+         <li class="nav-item">
+            <router-link class="nav-link active"
+                  :to="{ name: 'adeudosGenerales' }"
+                  >Adeudo general</router-link >
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -100,7 +104,22 @@
                   >Inmueble con mas valor</router-link
                 >
               </li>
-              
+               <li>
+                
+                <router-link
+                  :to="{ name: 'listararrendadoreslibres' }"
+                  class="dropdown-item"
+                  >Inmuebles libres</router-link
+                >
+              </li>
+              <li>
+        
+                <router-link
+                  :to="{ name: 'buscarInmueble' }"
+                  class="dropdown-item"
+                  >Buscar inmuebles</router-link
+                >
+              </li>
             </ul>
           </li>
         </ul>

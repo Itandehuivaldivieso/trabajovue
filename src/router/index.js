@@ -6,8 +6,8 @@ const routes =[
         component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/Arrendatarios/ListarArrendatario.vue')
       },
     {
-        path: '/arrendatario',
-        name: 'arrendatario',
+        path: '/adeudosGenerales',
+        name: 'adeudosGenerales',
         component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/HelloWorld.vue')
       },
       {
@@ -34,7 +34,29 @@ const routes =[
         path: '/inmuebleCaro',
         name: 'inmuebleCaro',
         component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/Inmuebles/InmuebleMasValor.vue')
+      },
+      {
+        path: '/listarArrendadores',
+        name: 'listarArrendadores',
+        component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/Arrendadores/ListarArrendadores.vue')
+      },
+      
+      {
+        path: '/listararrendadoreslibres',
+        name: 'listararrendadoreslibres',
+        component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/Inmuebles/NumInmuebles.vue')
+      },
+      {
+        path: '/buscarInmueble',
+        name: 'buscarInmueble',
+        component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/Inmuebles/SearchInmuebleDir.vue')
+      },
+      {
+        path: '/listarAdeudos',
+        name: 'listarAdeudos',
+        component: () => import(/* webpackChunkName: "arrendamiento" */ '../components/HelloWorld.vue')
       }
+
 ]
 const router = createRouter({
     history: createWebHashHistory(),
