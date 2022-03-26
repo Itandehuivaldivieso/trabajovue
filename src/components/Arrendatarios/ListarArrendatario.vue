@@ -1,5 +1,6 @@
 <template>
   <h1>Arendatarios</h1>
+  
   <div>
     <table class="table">
       <thead class="table-dark">
@@ -18,24 +19,36 @@
           <td>{{ contact.Nombre }}</td>
           <td>{{ contact.Apellido }}</td>
           <td>
-            <button @click="update = true" class="btn btn-warning">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              @click="editarPersona(contact)"
+            >
               Editar
             </button>
-            
-            <button @click="eliminar(contact.id_Alumno)" class="btn btn-danger">
+            <button @click="eliminar(contact.Rfc)" class="btn btn-danger">
               Eliminar
             </button>
           </td>
         </tr>
+        
       </tbody>
     </table>
+     
   </div>
+  <modal :persona="personaEditada"/>
 </template>
 
 <script>
 import axios from "axios";
+import Modal from "../General/ModalArrendatario.vue";
 export default {
   name: "HelloWorld",
+  components: {
+    Modal,
+  },
   mounted() {
     console.log("Component mounted.");
   },
@@ -44,7 +57,12 @@ export default {
   },
   data() {
     return {
-      personas: [],
+      personas: {
+        rfc: "",
+        nombre: "",
+        apellido: "",
+      },
+      personaEditada:[],
       showModel: false,
     };
   },
@@ -54,7 +72,6 @@ export default {
     },
   },
   methods: {
-    
     async list() {
       axios
         .get("http://localhost:60775/Arrendatario/Listar")
@@ -68,10 +85,19 @@ export default {
           // para el manejo de errores
           console.log(error);
         });
-      // const res = await axios.get("http://localhost:60775/Arrendatario/Listar");
-      // console.log(res)
-      // this.personas = res.data;
     },
+    async eliminar(Rfc) {
+      const res = await axios.post(
+        "http://localhost:60775/Arrendatario/Eliminar",
+        { Rfc }
+      );
+      console.log(res);
+      this.list();
+    },
+    editarPersona(persona){
+        this.personaEditada = persona;
+        console.log(this.personaEditada);
+    }
   },
   created() {
     this.list();
